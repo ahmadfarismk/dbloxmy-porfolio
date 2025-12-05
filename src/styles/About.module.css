@@ -1,0 +1,197 @@
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.story {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .story {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.storyContent h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-body);
+}
+
+.storyContent p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.storyImage img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+}
+
+.values {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .values {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.valueCard {
+    background: var(--surface-light);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+[data-theme='dark'] .valueCard {
+    background: var(--surface-dark);
+}
+
+.valueCard:hover {
+    transform: translateY(-5px);
+}
+
+.icon {
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+.valueCard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-body);
+}
+
+.valueCard p {
+    opacity: 0.7;
+    font-size: 0.95rem;
+}
+
+.whyUs {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(6, 182, 212, 0.05));
+    border-radius: 24px;
+}
+
+.whyUs h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.reasons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+    .reasons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.reasonItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    background: var(--bg-body);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+}
+
+.checkIcon {
+    color: var(--neon-cyan);
+    flex-shrink: 0;
+}
+
+.team {
+    text-align: center;
+}
+
+.team h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.teamGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 600px) {
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .teamGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.teamCard {
+    background: var(--surface-light);
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+
+[data-theme='dark'] .teamCard {
+    background: var(--surface-dark);
+}
+
+.teamCard:hover {
+    transform: translateY(-5px);
+}
+
+.teamImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--primary-blue);
+}
+
+.teamCard h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-body);
+}
+
+.teamCard p {
+    font-size: 0.9rem;
+    color: var(--neon-cyan);
+    font-weight: 500;
+}
