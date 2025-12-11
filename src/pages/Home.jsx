@@ -74,7 +74,7 @@ const Home = () => {
             </section>
 
             {/* Projects Section */}
-            <section className="section" style={{ background: 'var(--surface-light)' }}>
+            <section className={`section ${styles.projectsSection}`}>
                 <div className="container">
                     <Reveal>
                         <div className={styles.sectionHeader}>

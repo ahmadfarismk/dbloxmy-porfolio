@@ -5,10 +5,9 @@ import styles from '../styles/About.module.css';
 
 const About = () => {
     const team = [
-        { name: 'Alex Tan', role: 'Founder & Lead Developer', image: 'https://placehold.co/400x400/1e293b/06b6d4?text=Alex' },
-        { name: 'Sarah Lee', role: 'Creative Director', image: 'https://placehold.co/400x400/1e293b/ec4899?text=Sarah' },
-        { name: 'Michael Chen', role: 'Senior Scripter', image: 'https://placehold.co/400x400/1e293b/2563eb?text=Michael' },
-        { name: 'Jessica Wong', role: '3D Artist', image: 'https://placehold.co/400x400/1e293b/10b981?text=Jessica' },
+        { name: 'Danial Iman', role: 'Founder', image: 'https://placehold.co/400x400/1e293b/06b6d4?text=Danial' },
+        { name: 'Ahmad Faris', role: 'Lead Developer', image: 'https://placehold.co/400x400/1e293b/ec4899?text=Faris' },
+        { name: 'Luqman Hazim', role: 'Developer', image: 'https://placehold.co/400x400/1e293b/2563eb?text=Luqman' },
     ];
 
     return (
