@@ -1,25 +1,57 @@
 .header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .header {
+        margin-bottom: 4rem;
+    }
 }
 
 .header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     margin-bottom: 1rem;
 }
 
+@media (min-width: 480px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: 3rem;
+    }
+}
+
 .header p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     opacity: 0.7;
+}
+
+@media (min-width: 480px) {
+    .header p {
+        font-size: 1.1rem;
+    }
 }
 
 .story {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 5rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
     align-items: center;
+}
+
+@media (min-width: 768px) {
+    .story {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 5rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -29,9 +61,23 @@
 }
 
 .storyContent h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--text-body);
+}
+
+@media (min-width: 480px) {
+    .storyContent h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .storyContent h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .storyContent p {
@@ -49,8 +95,16 @@
 .values {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 5rem;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .values {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 5rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -61,10 +115,16 @@
 
 .valueCard {
     background: var(--surface-light);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     text-align: center;
     transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .valueCard {
+        padding: 2rem;
+    }
 }
 
 [data-theme='dark'] .valueCard {
@@ -93,15 +153,36 @@
 
 .whyUs {
     text-align: center;
-    margin-bottom: 5rem;
-    padding: 3rem;
+    margin-bottom: 3rem;
+    padding: 2rem 1.5rem;
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(6, 182, 212, 0.05));
     border-radius: 24px;
 }
 
+@media (min-width: 768px) {
+    .whyUs {
+        margin-bottom: 5rem;
+        padding: 3rem;
+    }
+}
+
 .whyUs h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 480px) {
+    .whyUs h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .whyUs h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .reasons {
@@ -138,25 +219,40 @@
 }
 
 .team h2 {
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 480px) {
+    .team h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .team h2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
 }
 
 .teamGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 480px) {
     .teamGrid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
 @media (min-width: 1024px) {
     .teamGrid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

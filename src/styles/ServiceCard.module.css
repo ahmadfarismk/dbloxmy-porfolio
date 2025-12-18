@@ -1,10 +1,16 @@
 .card {
     background: var(--surface-light);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     transition: all 0.3s ease;
     border: 1px solid transparent;
     height: 100%;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 2rem;
+    }
 }
 
 [data-theme='dark'] .card {
@@ -36,10 +42,16 @@
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
     color: var(--text-body);
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.25rem;
+    }
 }
 
 .description {

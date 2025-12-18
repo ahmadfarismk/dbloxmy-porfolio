@@ -1,24 +1,63 @@
 .header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .header {
+        margin-bottom: 4rem;
+    }
 }
 
 .header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     margin-bottom: 1rem;
 }
 
+@media (min-width: 480px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: 3rem;
+    }
+}
+
 .header p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     opacity: 0.7;
+}
+
+@media (min-width: 480px) {
+    .header p {
+        font-size: 1.1rem;
+    }
 }
 
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 5rem;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 5rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -35,10 +74,16 @@
 
 .card {
     background: var(--surface-light);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     transition: all 0.3s ease;
     border: 1px solid transparent;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 2rem;
+    }
 }
 
 [data-theme='dark'] .card {
@@ -64,9 +109,16 @@
 }
 
 .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
     color: var(--text-body);
+}
+
+@media (min-width: 768px) {
+    .card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
 }
 
 .card p {
@@ -98,24 +150,45 @@
 }
 
 .process {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .process {
+        margin-bottom: 5rem;
+    }
 }
 
 .process h2 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 480px) {
+    .process h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .process h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
 }
 
 .timeline {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 480px) {
     .timeline {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
@@ -131,10 +204,16 @@
 }
 
 .stepNumber {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: rgba(128, 128, 128, 0.1);
     margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .stepNumber {
+        font-size: 3rem;
+    }
 }
 
 .timelineItem h3 {
@@ -150,31 +229,64 @@
 
 .industries {
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 2.5rem 1.5rem;
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(6, 182, 212, 0.05));
     border-radius: 24px;
 }
 
+@media (min-width: 768px) {
+    .industries {
+        padding: 4rem 2rem;
+    }
+}
+
 .industries h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 480px) {
+    .industries h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .industries h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .industryTags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .industryTags {
+        gap: 1rem;
+    }
 }
 
 .industryTags span {
     background: var(--bg-body);
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     border-radius: 30px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     border: 1px solid rgba(128, 128, 128, 0.1);
     transition: all 0.3s ease;
+}
+
+@media (min-width: 480px) {
+    .industryTags span {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
 }
 
 .industryTags span:hover {
