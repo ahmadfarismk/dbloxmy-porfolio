@@ -63,6 +63,14 @@ const Navbar = ({ theme, toggleTheme }) => {
                     </button>
                 </div>
 
+                {/* Mobile Menu Backdrop */}
+                {isOpen && (
+                    <div 
+                        className={styles.backdrop} 
+                        onClick={() => setIsOpen(false)}
+                    />
+                )}
+
                 {/* Mobile Menu */}
                 <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
                     {navLinks.map((link) => (

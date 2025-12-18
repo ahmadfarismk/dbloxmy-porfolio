@@ -8,6 +8,20 @@
     /* Offset for fixed navbar */
 }
 
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 70vh;
+        padding: 2rem 0;
+    }
+}
+
 .background {
     position: absolute;
     top: 0;
@@ -88,11 +102,17 @@
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 1.5rem;
     color: var(--text-body);
+}
+
+@media (min-width: 480px) {
+    .title {
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -102,16 +122,30 @@
 }
 
 .subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: var(--text-body);
     opacity: 0.8;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     max-width: 600px;
     line-height: 1.6;
+}
+
+@media (min-width: 480px) {
+    .subtitle {
+        font-size: 1.125rem;
+        margin-bottom: 2.5rem;
+    }
 }
 
 .actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    flex-direction: column;
+}
+
+@media (min-width: 480px) {
+    .actions {
+        flex-direction: row;
+    }
 }

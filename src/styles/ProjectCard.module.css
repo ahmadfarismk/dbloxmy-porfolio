@@ -72,10 +72,16 @@
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-body);
     transition: color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.25rem;
+    }
 }
 
 .card:hover .title {
