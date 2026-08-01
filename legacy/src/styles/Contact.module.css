@@ -1,0 +1,122 @@
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr 1.5fr;
+    }
+}
+
+.infoCard {
+    background: var(--surface-light);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+[data-theme='dark'] .infoCard {
+    background: var(--surface-dark);
+}
+
+.infoItem {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.icon {
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-body);
+    margin-bottom: 0.25rem;
+}
+
+.whatsapp {
+    margin-top: 2rem;
+}
+
+.map {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 300px;
+}
+
+.form {
+    background: var(--surface-light);
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+[data-theme='dark'] .form {
+    background: var(--surface-dark);
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.formGroup label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background: var(--bg-body);
+    color: var(--text-body);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
