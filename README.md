@@ -19,9 +19,19 @@ All copy and data live in [`content/`](content/) — no component changes needed
 | `content/site.ts` | Site name, tagline, CTAs, nav links, socials, email |
 | `content/services.ts` | "What We Build" cards |
 | `content/projects.ts` | Featured project case studies + metrics |
-| `content/testimonials.ts` | Testimonial quotes |
-| `content/logos.ts` | Trusted-by marquee logos |
+| `content/testimonials.ts` | Testimonial quotes ⚠️ still placeholder |
+| `content/logos.ts` | Trusted-by marquee logos ⚠️ still placeholder |
 | `content/process.ts` | Development process steps |
+| `content/timeline.ts` | Our Story milestones + photos |
+| `content/gallery.ts` | Gallery images + categories |
+| `content/team.ts` | Team members |
+
+## Images
+
+Source photos live in `images/` (originals, not deployed). The web-ready
+copies in `public/story/` are converted from HEIC where needed, EXIF-rotated,
+resized to max 1600px, and JPEG q85. Re-run the conversion only if you add
+new originals.
 
 ## Adding real images
 

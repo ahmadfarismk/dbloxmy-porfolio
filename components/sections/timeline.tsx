@@ -1,18 +1,139 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
+  AnimatePresence,
   motion,
   useReducedMotion,
   useScroll,
   useSpring,
 } from "framer-motion";
-import { CalendarDays, ImagePlus, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  ImagePlus,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { TimelineVideoPlayer } from "@/components/sections/timeline-video";
 import type { Milestone, TimelineImage } from "@/content/timeline";
 import { cn } from "@/lib/utils";
+
+/* ------------------------------------------------------------------ */
+/* Lightbox                                                            */
+/* ------------------------------------------------------------------ */
+
+interface LightboxState {
+  images: TimelineImage[];
+  index: number;
+}
+
+function Lightbox({
+  state,
+  onClose,
+  onNavigate,
+}: {
+  state: LightboxState;
+  onClose: () => void;
+  onNavigate: (delta: number) => void;
+}) {
+  const image = state.images[state.index];
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNavigate(1);
+      if (e.key === "ArrowLeft") onNavigate(-1);
+    }
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose, onNavigate]);
+
+  if (!image?.src) return null;
+
+  return (
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.caption}
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close image"
+        className="absolute right-4 top-4 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20"
+      >
+        <X className="size-5" />
+      </button>
+
+      {state.images.length > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNavigate(-1);
+            }}
+            className="absolute left-3 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20 sm:left-6"
+          >
+            <ChevronLeft className="size-6" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNavigate(1);
+            }}
+            className="absolute right-3 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20 sm:right-6"
+          >
+            <ChevronRight className="size-6" />
+          </button>
+        </>
+      )}
+
+      <motion.figure
+        key={image.src}
+        className="relative max-h-full w-full max-w-4xl"
+        initial={{ scale: 0.96, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={image.src}
+          alt={image.caption}
+          width={1600}
+          height={1200}
+          sizes="(max-width: 896px) 100vw, 896px"
+          className="max-h-[80vh] w-full rounded-xl object-contain"
+        />
+        <figcaption className="mt-3 text-center text-sm text-white/80">
+          {image.caption}
+          {state.images.length > 1 && (
+            <span className="ml-2 text-white/50">
+              {state.index + 1} / {state.images.length}
+            </span>
+          )}
+        </figcaption>
+      </motion.figure>
+    </motion.div>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Polaroid-style photo tile                                           */
@@ -29,17 +150,14 @@ const tileGradients = [
 function PhotoTile({
   image,
   index,
+  onOpen,
 }: {
   image: TimelineImage;
   index: number;
+  onOpen?: () => void;
 }) {
-  return (
-    <figure
-      className={cn(
-        "group/tile rounded-xl border border-border bg-surface p-2 pb-1 shadow-lg transition-transform duration-300 hover:z-10 hover:-translate-y-1.5 hover:rotate-0 hover:scale-[1.04]",
-        tileRotations[index % tileRotations.length]
-      )}
-    >
+  const inner = (
+    <>
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
         {image.src ? (
           <Image
@@ -56,10 +174,7 @@ function PhotoTile({
               tileGradients[index % tileGradients.length]
             )}
           >
-            <ImagePlus
-              className="size-5 text-white/60 transition-transform duration-300 group-hover/tile:scale-110"
-              aria-hidden
-            />
+            <ImagePlus className="size-5 text-white/60" aria-hidden />
             <span className="px-2 text-center text-[10px] font-medium uppercase tracking-wider text-white/60">
               Photo slot
             </span>
@@ -69,8 +184,28 @@ function PhotoTile({
       <figcaption className="truncate px-1 py-1.5 text-center text-[11px] text-muted-foreground">
         {image.caption}
       </figcaption>
-    </figure>
+    </>
   );
+
+  const className = cn(
+    "group/tile block w-full rounded-xl border border-border bg-surface p-2 pb-1 text-left shadow-lg transition-transform duration-300 hover:z-10 hover:-translate-y-1.5 hover:rotate-0 hover:scale-[1.04]",
+    tileRotations[index % tileRotations.length]
+  );
+
+  if (image.src && onOpen) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        className={className}
+        aria-label={`View larger: ${image.caption}`}
+      >
+        {inner}
+      </button>
+    );
+  }
+
+  return <figure className={className}>{inner}</figure>;
 }
 
 /* ------------------------------------------------------------------ */
@@ -80,14 +215,16 @@ function PhotoTile({
 function MilestoneItem({
   milestone,
   index,
+  onOpenImage,
 }: {
   milestone: Milestone;
   index: number;
+  onOpenImage: (images: TimelineImage[], imageIndex: number) => void;
 }) {
   const reduceMotion = useReducedMotion();
   const flipped = index % 2 === 1;
-
   const slideFrom = reduceMotion ? 0 : flipped ? 40 : -40;
+  const withPhotos = milestone.images.filter((img) => img.src);
 
   return (
     <li className="relative md:grid md:grid-cols-2 md:gap-x-20">
@@ -120,12 +257,7 @@ function MilestoneItem({
 
       {/* Text block */}
       <motion.div
-        className={cn(
-          "pl-12 md:pl-0",
-          flipped
-            ? "md:order-2 md:pl-0 md:text-left"
-            : "md:text-right"
-        )}
+        className={cn("pl-12 md:pl-0", flipped ? "md:order-2" : "md:text-right")}
         initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: slideFrom }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -159,12 +291,9 @@ function MilestoneItem({
         </p>
       </motion.div>
 
-      {/* Photo collage */}
+      {/* Photo collage + optional video */}
       <motion.div
-        className={cn(
-          "mt-6 pl-12 md:mt-0 md:pl-0",
-          flipped && "md:order-1"
-        )}
+        className={cn("mt-6 pl-12 md:mt-0 md:pl-0", flipped && "md:order-1")}
         initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -slideFrom }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -174,15 +303,34 @@ function MilestoneItem({
           ease: [0.21, 0.47, 0.32, 0.98],
         }}
       >
-        <div
-          className={cn(
-            "grid max-w-md grid-cols-2 gap-3 sm:gap-4",
-            milestone.upcoming && "opacity-90 saturate-[0.85]"
-          )}
-        >
-          {milestone.images.map((image, i) => (
-            <PhotoTile key={image.caption + i} image={image} index={i} />
-          ))}
+        <div className="max-w-md">
+          <div
+            className={cn(
+              "grid grid-cols-2 gap-3 sm:gap-4",
+              milestone.upcoming && "opacity-90 saturate-[0.85]"
+            )}
+          >
+            {milestone.images.map((image, i) => (
+              <PhotoTile
+                key={(image.src ?? image.caption) + i}
+                image={image}
+                index={i}
+                onOpen={
+                  image.src
+                    ? () =>
+                        onOpenImage(
+                          withPhotos,
+                          withPhotos.findIndex((p) => p.src === image.src)
+                        )
+                    : undefined
+                }
+              />
+            ))}
+          </div>
+
+          {milestone.video ? (
+            <TimelineVideoPlayer video={milestone.video} />
+          ) : null}
         </div>
       </motion.div>
     </li>
@@ -216,6 +364,7 @@ function YearDivider({ year }: { year: string }) {
 export function Timeline({ milestones }: { milestones: Milestone[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -226,6 +375,22 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
     damping: 25,
     restDelta: 0.001,
   });
+
+  const openImage = useCallback(
+    (images: TimelineImage[], index: number) =>
+      setLightbox({ images, index: Math.max(0, index) }),
+    []
+  );
+
+  const navigate = useCallback(
+    (delta: number) =>
+      setLightbox((current) => {
+        if (!current) return current;
+        const total = current.images.length;
+        return { ...current, index: (current.index + delta + total) % total };
+      }),
+    []
+  );
 
   // Interleave year dividers where the year changes
   const rows: Array<
@@ -264,10 +429,21 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
               key={row.milestone.id}
               milestone={row.milestone}
               index={row.index}
+              onOpenImage={openImage}
             />
           )
         )}
       </ol>
+
+      <AnimatePresence>
+        {lightbox && (
+          <Lightbox
+            state={lightbox}
+            onClose={() => setLightbox(null)}
+            onNavigate={navigate}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

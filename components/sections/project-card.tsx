@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Gamepad2 } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { CardLift } from "@/components/motion/card-lift";
 import { NumberCounter } from "@/components/motion/number-counter";
 import type { Project } from "@/content/projects";
@@ -83,6 +84,21 @@ export function ProjectCard({ project }: { project: Project }) {
               </Badge>
             ))}
           </div>
+
+          {/* External link (e.g. the Roblox experience page) */}
+          {project.href ? (
+            <Button asChild size="sm" className="mt-5 w-full">
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Gamepad2 aria-hidden />
+                {project.hrefLabel ?? "View project"}
+                <ExternalLink aria-hidden />
+              </a>
+            </Button>
+          ) : null}
         </CardContent>
       </Card>
     </CardLift>

@@ -1,8 +1,9 @@
 /**
  * Featured projects / case studies.
- * Replace with real games: set `image` to a file in /public/projects/
- * (e.g. "/projects/neon-city.jpg"). While `image` is null a branded
- * gradient placeholder renders instead.
+ *
+ * Only real, shipped work belongs here — the numbers are shown publicly.
+ * To add a project: drop a cover image in /public/projects/ (or reuse one
+ * from /public/story/), then add an entry below.
  */
 
 export interface ProjectMetric {
@@ -25,52 +26,56 @@ export interface Project {
   placeholderGradient: string;
   metrics: ProjectMetric[];
   tags: string[];
+  /** External link (e.g. the Roblox experience page) */
+  href?: string;
+  /** Label for the external link button */
+  hrefLabel?: string;
 }
 
 export const projects: Project[] = [
   {
-    slug: "neon-city-tycoon",
-    title: "Neon City Tycoon",
-    genre: "Tycoon",
+    slug: "finblox",
+    title: "FinBlox",
+    genre: "Education",
     description:
-      "A cyberpunk city-builder with deep progression and social systems, scaled to six-figure daily visits.",
-    image: null,
+      "Not your normal challenge. A financial-literacy experience built with MyCelik Network, teaching money skills to young Malaysians through play. Live on Roblox and published under D'Blox Studios.",
+    image: "/story/finblox/finblox-2.jpg",
     placeholderGradient: "from-violet-600 via-fuchsia-500 to-cyan-400",
     metrics: [
-      { label: "Total Visits", value: 42, suffix: "M+" },
-      { label: "D7 Retention", value: 31, suffix: "%" },
-      { label: "Revenue Uplift", value: 68, suffix: "%", prefix: "+" },
+      { label: "Visits", value: 319 },
+      { label: "Max Server Size", value: 64 },
+      { label: "Launched", value: 2025 },
     ],
-    tags: ["Luau", "DataStores", "LiveOps", "Economy"],
+    tags: ["Luau", "Financial Literacy", "MyCelik Network", "Ages 16+"],
+    href: "https://www.roblox.com/games/140407575953529/FinBlox",
+    hrefLabel: "Play on Roblox",
   },
   {
-    slug: "space-explorers",
-    title: "Space Explorers",
-    genre: "Simulator",
-    description:
-      "A co-op exploration simulator with cross-server fleets, seasonal content drops, and a player-driven economy.",
-    image: null,
-    placeholderGradient: "from-blue-600 via-indigo-500 to-emerald-400",
-    metrics: [
-      { label: "Total Visits", value: 18, suffix: "M+" },
-      { label: "Avg. Session", value: 24, suffix: " min" },
-      { label: "MAU Growth", value: 3, suffix: "x", prefix: "+" },
-    ],
-    tags: ["MemoryStore", "Open Cloud", "Matchmaking"],
-  },
-  {
-    slug: "brand-runway",
-    title: "Brand Runway",
+    slug: "keluar-sekejap-ep136",
+    title: "Keluar Sekejap — EP136",
     genre: "Brand Experience",
     description:
-      "A fashion-brand activation with UGC drops and timed events — built end-to-end in eight weeks for a global partner.",
-    image: null,
-    placeholderGradient: "from-pink-500 via-rose-400 to-amber-300",
+      "Gamifying and virtualizing Episode 136 of the Keluar Sekejap podcast — turning a conversation into a playable, explorable Roblox world and proving media content can live inside the platform.",
+    image: "/story/keluar-sekejap/keluar-sekejap-1.jpg",
+    placeholderGradient: "from-teal-500 via-emerald-400 to-cyan-400",
     metrics: [
-      { label: "Launch Visits", value: 5, suffix: "M+" },
-      { label: "UGC Items Sold", value: 900, suffix: "K" },
-      { label: "Press Features", value: 12 },
+      { label: "Episode", value: 136 },
+      { label: "Delivered", value: 2024 },
     ],
-    tags: ["UGC", "Brand Partnership", "Events"],
+    tags: ["Virtualization", "Brand Partnership", "World Building"],
+  },
+  {
+    slug: "gamecraft-bootcamps-2026",
+    title: "GameCraft Bootcamps 2026",
+    genre: "Education Programme",
+    description:
+      "A free school-holiday bootcamp run with UiTM Permatang Pauh at NADI Seberang Jaya — taking students aged 7–21 from zero to their own working Roblox game, including AI-assisted scripting.",
+    image: "/story/gamecraft-uitm/gamecraft-uitm-3.jpg",
+    placeholderGradient: "from-blue-600 via-indigo-500 to-cyan-400",
+    metrics: [
+      { label: "Ages", value: 7, suffix: "–21" },
+      { label: "Held", value: 2026 },
+    ],
+    tags: ["Workshop", "UiTM", "NADI Seberang Jaya", "Roblox Education"],
   },
 ];
