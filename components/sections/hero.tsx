@@ -6,12 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/motion/fade-in";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { Spotlight } from "@/components/motion/spotlight";
-import { HeroPreview } from "@/components/sections/hero-preview";
 import { siteConfig } from "@/content/site";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-24 pt-36 md:pb-32 md:pt-44">
+    <section className="relative overflow-hidden pb-24 pt-40 md:pb-32 md:pt-52">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top,black_35%,transparent_75%)]" />
       <Spotlight className="-top-40 left-1/2 -translate-x-1/2" />
@@ -66,11 +65,6 @@ export function Hero() {
             </div>
           </FadeIn>
         </div>
-
-        {/* Animated dashboard preview */}
-        <FadeIn delay={0.45} amount={0.1}>
-          <HeroPreview />
-        </FadeIn>
       </div>
     </section>
   );
