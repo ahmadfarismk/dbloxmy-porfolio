@@ -60,8 +60,8 @@ export const projects: Project[] = [
     longDescription:
       "FinBlox powers the Money Mayhem Varsity Challenge (MMVC) 2025 — a national financial-literacy competition held at Sasana Kijang, Bank Negara Malaysia. Built with MyCelik Network, the experience turns budgeting, saving, and investing decisions into a competitive Roblox game that university students play head-to-head. Published on Roblox under D'Blox Studios and rated for ages 16+.",
     images: [
-      // TODO: swap in the official FinBlox key art as the cover once saved
-      // to /public/projects/finblox-cover.jpg
+      // Official key art from the Roblox experience page
+      "/projects/finblox-cover.png",
       "/story/finblox/finblox-3.jpg",
       "/story/finblox/finblox-2.jpg",
       "/story/finblox/finblox-1.jpg",
