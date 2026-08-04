@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, ExternalLink, Gamepad2 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ExternalLink, Gamepad2, Maximize2, Youtube } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,51 +13,119 @@ import { NumberCounter } from "@/components/motion/number-counter";
 import type { Project } from "@/content/projects";
 import { cn } from "@/lib/utils";
 
-export function ProjectCard({ project }: { project: Project }) {
+/** ms each preview image stays before rotating */
+const ROTATE_MS = 4000;
+
+export function ProjectCard({
+  project,
+  index = 0,
+  onOpen,
+}: {
+  project: Project;
+  /** Used to stagger rotation so cards don't flip in lockstep */
+  index?: number;
+  onOpen?: () => void;
+}) {
+  const reduceMotion = useReducedMotion();
+  const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = project.images.length;
+
+  useEffect(() => {
+    if (reduceMotion || paused || total <= 1) return;
+    // Stagger each card's first flip by 700ms
+    const offset = index * 700;
+    const timer = setTimeout(() => {
+      setSlide((s) => (s + 1) % total);
+    }, ROTATE_MS + (slide === 0 ? offset : 0));
+    return () => clearTimeout(timer);
+  }, [slide, paused, reduceMotion, total, index]);
+
   return (
     <CardLift className="h-full">
-      <Card className="group h-full overflow-hidden transition-colors duration-300 hover:border-accent/40">
-        {/* Cover art */}
-        <div className="relative aspect-[16/9] overflow-hidden">
-          {project.image ? (
-            <Image
-              src={project.image}
-              alt={`${project.title} gameplay screenshot`}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+      <Card
+        className="group h-full overflow-hidden transition-colors duration-300 hover:border-accent/40"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Cover carousel — the whole thing opens the detail view */}
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`View details for ${project.title}`}
+          className="relative block aspect-[16/9] w-full overflow-hidden"
+        >
+          {total > 0 ? (
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.div
+                key={slide}
+                className="absolute inset-0"
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+              >
+                <Image
+                  src={project.images[slide]}
+                  alt={`${project.title} preview ${slide + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                  priority={index === 0 && slide === 0}
+                />
+              </motion.div>
+            </AnimatePresence>
           ) : (
             <div
               className={cn(
-                "flex h-full w-full items-center justify-center bg-gradient-to-br transition-transform duration-500 group-hover:scale-105",
+                "h-full w-full bg-gradient-to-br",
                 project.placeholderGradient
               )}
-            >
-              <span className="px-4 text-center font-display text-2xl font-bold text-white/90 drop-shadow-md">
-                {project.title}
-              </span>
-            </div>
+            />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+
           <Badge
             variant="accent"
             className="absolute left-4 top-4 bg-background/70 backdrop-blur-sm"
           >
             {project.genre}
           </Badge>
-        </div>
+
+          {project.video ? (
+            <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-background/70 px-2 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
+              <Youtube className="size-3 text-red-500" aria-hidden />
+              Video
+            </span>
+          ) : null}
+
+          {/* Expand affordance */}
+          <span className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1.5 text-[11px] font-medium text-foreground opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+            <Maximize2 className="size-3" aria-hidden />
+            View details
+          </span>
+
+          {/* Slide dots */}
+          {total > 1 ? (
+            <span className="absolute bottom-3 left-4 flex gap-1.5">
+              {project.images.map((_, i) => (
+                <span
+                  key={i}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    i === slide ? "w-4 bg-white" : "w-1.5 bg-white/45"
+                  )}
+                />
+              ))}
+            </span>
+          ) : null}
+        </button>
 
         <CardContent className="p-6 pt-5">
-          <div className="mb-2 flex items-center justify-between gap-2">
-            <h3 className="font-display text-xl font-semibold">
-              {project.title}
-            </h3>
-            <ArrowUpRight
-              className="size-5 shrink-0 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent group-hover:opacity-100"
-              aria-hidden
-            />
-          </div>
+          <h3 className="mb-2 font-display text-xl font-semibold">
+            {project.title}
+          </h3>
           <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
             {project.description}
           </p>
@@ -70,13 +142,14 @@ export function ProjectCard({ project }: { project: Project }) {
                     value={metric.value}
                     prefix={metric.prefix}
                     suffix={metric.suffix}
+                    plain={metric.plain}
                   />
                 </dd>
               </div>
             ))}
           </dl>
 
-          {/* Tech tags */}
+          {/* Tags */}
           <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
               <Badge key={tag} variant="outline" className="text-[11px]">
@@ -85,20 +158,26 @@ export function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          {/* External link (e.g. the Roblox experience page) */}
-          {project.href ? (
-            <Button asChild size="sm" className="mt-5 w-full">
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Gamepad2 aria-hidden />
-                {project.hrefLabel ?? "View project"}
-                <ExternalLink aria-hidden />
-              </a>
+          <div className="mt-5 flex flex-col gap-2">
+            <Button variant="outline" size="sm" onClick={onOpen}>
+              <Maximize2 aria-hidden />
+              View details
             </Button>
-          ) : null}
+            {project.href ? (
+              <Button asChild size="sm">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Gamepad2 aria-hidden />
+                  {project.hrefLabel ?? "View project"}
+                  <ExternalLink aria-hidden />
+                </a>
+              </Button>
+            ) : null}
+          </div>
         </CardContent>
       </Card>
     </CardLift>

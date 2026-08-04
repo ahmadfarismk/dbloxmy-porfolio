@@ -1,18 +1,28 @@
 import {
   Gamepad2,
-  CalendarClock,
-  Coins,
-  Shirt,
-  BarChart3,
-  ServerCog,
+  Clapperboard,
+  GraduationCap,
+  Presentation,
+  Users,
   type LucideIcon,
 } from "lucide-react";
+
+/**
+ * What D'Blox actually offers.
+ *
+ * Every service here is backed by delivered work — keep it that way.
+ * (Removed: UGC Experiences, Monetization Systems, Analytics &
+ * Optimization, Backend Integrations, LiveOps & Events — none of these
+ * matched the studio's real portfolio.)
+ */
 
 export interface Service {
   icon: LucideIcon;
   title: string;
   description: string;
   highlights: string[];
+  /** Photo shown on the services page */
+  image: string | null;
 }
 
 export const services: Service[] = [
@@ -20,42 +30,48 @@ export const services: Service[] = [
     icon: Gamepad2,
     title: "Roblox Game Development",
     description:
-      "Full-cycle game production from concept to launch — gameplay systems, world building, and polish that keeps players coming back.",
-    highlights: ["Luau architecture", "Multiplayer systems", "World building"],
+      "Full-cycle game production on Roblox — concept, Luau systems, world building, UI, and launch. We build experiences end to end and ship them under our own studio name.",
+    highlights: ["Luau scripting", "Game systems & mechanics", "World building"],
+    image: "/story/keluar-sekejap/keluar-sekejap-4.jpg",
   },
   {
-    icon: CalendarClock,
-    title: "LiveOps & Events",
+    icon: Clapperboard,
+    title: "Brand & Media Virtualization",
     description:
-      "Seasonal events, content drops, and live operations calendars engineered to sustain engagement and grow DAU month over month.",
-    highlights: ["Event pipelines", "Content cadence", "Community hooks"],
+      "Bringing brands, shows, and campaigns inside Roblox as playable spaces. We rebuilt the Keluar Sekejap podcast set and ran an episode as a live virtual production.",
+    highlights: ["Virtual sets & venues", "Campaign activations", "Media tie-ins"],
+    image: "/story/keluar-sekejap/keluar-sekejap-3.jpg",
   },
   {
-    icon: Coins,
-    title: "Monetization Systems",
+    icon: GraduationCap,
+    title: "Educational & Serious Games",
     description:
-      "Game passes, developer products, battle passes, and economy design tuned for healthy conversion without hurting player trust.",
-    highlights: ["Economy design", "Battle passes", "A/B pricing"],
+      "Learning objectives turned into genuine gameplay. FinBlox teaches financial literacy to Malaysian students and powers the Money Mayhem Varsity Challenge.",
+    highlights: [
+      "Curriculum-aligned design",
+      "Financial literacy",
+      "Measurable outcomes",
+    ],
+    image: "/story/finblox/finblox-3.jpg",
   },
   {
-    icon: Shirt,
-    title: "UGC Experiences",
+    icon: Users,
+    title: "Workshops & Bootcamps",
     description:
-      "Branded UGC items, avatar experiences, and catalog strategies that extend reach across the Roblox ecosystem.",
-    highlights: ["UGC catalog items", "Brand activations", "Avatar tech"],
+      "Hands-on Roblox development training for schools, universities, and community programmes — participants leave with a game they built themselves.",
+    highlights: [
+      "School & university programmes",
+      "AI-assisted scripting",
+      "Ages 7–21",
+    ],
+    image: "/story/gamecraft-uitm/gamecraft-uitm-3.jpg",
   },
   {
-    icon: BarChart3,
-    title: "Analytics & Optimization",
+    icon: Presentation,
+    title: "Expo & Event Activations",
     description:
-      "Funnel instrumentation, retention dashboards, and data-driven iteration loops that turn playtests into growth.",
-    highlights: ["Retention funnels", "Session analytics", "KPI dashboards"],
-  },
-  {
-    icon: ServerCog,
-    title: "Backend Integrations",
-    description:
-      "External APIs, cross-server messaging, secure data stores, and web services that scale with millions of sessions.",
-    highlights: ["Open Cloud APIs", "Data stores", "Web services"],
+      "Interactive Roblox showcases built for exhibition floors and live events — from iGEM Malaysia to the Malaysia Pavilion at World Expo 2025 Osaka.",
+    highlights: ["Exhibition builds", "Live demos", "Booth experiences"],
+    image: "/story/igem-2025/igem-2025-3.jpg",
   },
 ];

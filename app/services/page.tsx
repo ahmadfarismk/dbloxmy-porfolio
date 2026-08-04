@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Full-cycle Roblox game development, LiveOps, monetization, UGC, analytics, and backend integrations — everything a hit experience needs.",
+    "Roblox game development, brand and media virtualization, educational games, workshops, and expo activations — built and shipped by D'Blox.",
 };
 
 const panelGradients = [
@@ -30,9 +31,9 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Everything a Hit Game"
-        highlight="Needs"
-        description="Six disciplines, one team. Engage us for a single system or the entire production."
+        title="What We Actually"
+        highlight="Build"
+        description="Five disciplines, one team. Engage us for a single piece or the entire production."
       />
 
       <section className="pb-24 md:pb-32">
@@ -69,18 +70,33 @@ export default function ServicesPage() {
                     </ul>
                   </div>
 
-                  {/* Visual panel — swap for a real screenshot later */}
+                  {/* Visual panel */}
                   <div className={cn(flipped && "md:order-1")}>
-                    <div
-                      className={cn(
-                        "flex aspect-[4/3] items-center justify-center rounded-2xl border border-border bg-gradient-to-br",
-                        panelGradients[index % panelGradients.length]
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
+                      {service.image ? (
+                        <>
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+                        </>
+                      ) : (
+                        <div
+                          className={cn(
+                            "flex h-full w-full items-center justify-center bg-gradient-to-br",
+                            panelGradients[index % panelGradients.length]
+                          )}
+                        >
+                          <service.icon
+                            className="size-20 text-white/25"
+                            aria-hidden
+                          />
+                        </div>
                       )}
-                    >
-                      <service.icon
-                        className="size-20 text-white/25"
-                        aria-hidden
-                      />
                     </div>
                   </div>
                 </div>

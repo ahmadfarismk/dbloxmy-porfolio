@@ -14,9 +14,10 @@ import { siteConfig } from "@/content/site";
 
 const projectTypes = [
   "New Roblox game",
-  "Brand experience / UGC",
-  "LiveOps & events",
-  "Monetization / economy",
+  "Brand / media virtualization",
+  "Educational or serious game",
+  "Workshop or bootcamp",
+  "Expo or event activation",
   "Something else",
 ];
 

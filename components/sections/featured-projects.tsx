@@ -1,23 +1,13 @@
 import { Suspense } from "react";
 
-import { FadeInStagger, FadeInItem } from "@/components/motion/fade-in";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { ProjectCard } from "@/components/sections/project-card";
+import { ProjectsShowcase } from "@/components/sections/projects-showcase";
 import { ProjectsSkeleton } from "@/components/sections/skeletons";
 import { getProjects } from "@/lib/data";
 
 async function ProjectsGrid() {
   const projects = await getProjects();
-
-  return (
-    <FadeInStagger className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project) => (
-        <FadeInItem key={project.slug}>
-          <ProjectCard project={project} />
-        </FadeInItem>
-      ))}
-    </FadeInStagger>
-  );
+  return <ProjectsShowcase projects={projects} />;
 }
 
 export function FeaturedProjects() {

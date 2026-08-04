@@ -11,8 +11,8 @@ export function WhatWeBuild() {
       <div className="container-site">
         <SectionHeading
           eyebrow="What we build"
-          title="Every layer of a hit Roblox game"
-          description="One team covering gameplay, economy, events, and infrastructure — so you don't have to stitch together freelancers."
+          title="From playable worlds to the classroom"
+          description="One team covering game development, brand virtualization, education, and live activations — all shipped under our own studio name."
         />
 
         <FadeInStagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

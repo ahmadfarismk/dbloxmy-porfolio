@@ -13,8 +13,8 @@ interface NumberCounterProps {
   prefix?: string;
   suffix?: string;
   className?: string;
-  /** Animation duration hint (spring-based, approximate) */
-  duration?: number;
+  /** Skip thousands separators — use for years (2025, not 2,025) */
+  plain?: boolean;
 }
 
 export function NumberCounter({
@@ -22,43 +22,37 @@ export function NumberCounter({
   prefix = "",
   suffix = "",
   className,
+  plain = false,
 }: NumberCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const reduceMotion = useReducedMotion();
 
   const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, {
-    damping: 28,
-    stiffness: 80,
-  });
+  const spring = useSpring(motionValue, { damping: 28, stiffness: 80 });
+
+  const format = (n: number) =>
+    `${prefix}${plain ? String(n) : n.toLocaleString()}${suffix}`;
 
   useEffect(() => {
-    if (inView) {
-      motionValue.set(value);
-    }
+    if (inView) motionValue.set(value);
   }, [inView, value, motionValue]);
 
   useEffect(() => {
     if (reduceMotion) {
-      if (ref.current) {
-        ref.current.textContent = `${prefix}${value.toLocaleString()}${suffix}`;
-      }
+      if (ref.current) ref.current.textContent = format(value);
       return;
     }
     const unsubscribe = spring.on("change", (latest) => {
-      if (ref.current) {
-        ref.current.textContent = `${prefix}${Math.round(
-          latest
-        ).toLocaleString()}${suffix}`;
-      }
+      if (ref.current) ref.current.textContent = format(Math.round(latest));
     });
     return unsubscribe;
-  }, [spring, prefix, suffix, reduceMotion, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spring, prefix, suffix, reduceMotion, value, plain]);
 
   return (
-    <span ref={ref} className={className} aria-label={`${prefix}${value}${suffix}`}>
-      {reduceMotion ? `${prefix}${value.toLocaleString()}${suffix}` : `${prefix}0${suffix}`}
+    <span ref={ref} className={className} aria-label={format(value)}>
+      {reduceMotion ? format(value) : format(0)}
     </span>
   );
 }

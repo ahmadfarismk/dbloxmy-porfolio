@@ -4,9 +4,9 @@ import Link from "next/link";
 import { ArrowRight, Hammer } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { FadeIn, FadeInStagger, FadeInItem } from "@/components/motion/fade-in";
+import { FadeIn } from "@/components/motion/fade-in";
 import { PageHero } from "@/components/sections/page-hero";
-import { ProjectCard } from "@/components/sections/project-card";
+import { ProjectsShowcase } from "@/components/sections/projects-showcase";
 import { ProjectsSkeleton } from "@/components/sections/skeletons";
 import { getProjects } from "@/lib/data";
 
@@ -18,16 +18,7 @@ export const metadata: Metadata = {
 
 async function AllProjects() {
   const projects = await getProjects();
-
-  return (
-    <FadeInStagger className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project) => (
-        <FadeInItem key={project.slug}>
-          <ProjectCard project={project} />
-        </FadeInItem>
-      ))}
-    </FadeInStagger>
-  );
+  return <ProjectsShowcase projects={projects} />;
 }
 
 export default function ProjectsPage() {
