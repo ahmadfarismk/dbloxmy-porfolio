@@ -1,14 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { Separator } from "@/components/ui/separator";
-import { Logo } from "@/components/site/logo";
 import { navLinks, siteConfig } from "@/content/site";
 
 const socialLinks = [
-  { label: "Discord", href: siteConfig.socials.discord },
-  { label: "Twitter / X", href: siteConfig.socials.twitter },
-  { label: "YouTube", href: siteConfig.socials.youtube },
-  { label: "Roblox", href: siteConfig.socials.roblox },
+  { label: "WhatsApp", href: siteConfig.socials.whatsapp, external: true },
+  { label: "Play FinBlox on Roblox", href: siteConfig.socials.roblox, external: true },
 ];
 
 export function Footer() {
@@ -17,7 +15,16 @@ export function Footer() {
       <div className="container-site py-14">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div className="space-y-4">
-            <Logo />
+            {/* Full stacked lockup — the footer has room for the wordmark */}
+            <Link href="/" aria-label={`${siteConfig.name} — home`}>
+              <Image
+                src="/logo/dblox-logo-white.png"
+                alt={siteConfig.name}
+                width={168}
+                height={156}
+                className="h-20 w-auto"
+              />
+            </Link>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
               {siteConfig.description}
             </p>
@@ -50,6 +57,8 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}

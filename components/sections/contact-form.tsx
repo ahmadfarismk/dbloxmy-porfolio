@@ -118,10 +118,24 @@ export function ContactForm() {
         />
       </div>
 
-      <Button type="submit" size="lg" className="w-full sm:w-auto">
-        <Send aria-hidden />
-        Send inquiry
-      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Button type="submit" size="lg">
+          <Send aria-hidden />
+          Send inquiry
+        </Button>
+        <span className="text-xs text-muted-foreground">
+          or{" "}
+          <a
+            href={siteConfig.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-emerald-400 underline underline-offset-4"
+          >
+            message us on WhatsApp
+          </a>{" "}
+          for a faster reply
+        </span>
+      </div>
       <p className="text-xs text-muted-foreground">
         Submitting opens your email app with the message pre-filled.
       </p>

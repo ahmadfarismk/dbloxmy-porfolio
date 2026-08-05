@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MessageSquare } from "lucide-react";
+import { Clock, Mail, MessageCircle } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PageHero } from "@/components/sections/page-hero";
 import { ContactForm } from "@/components/sections/contact-form";
 import { siteConfig } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,22 +17,28 @@ export const metadata: Metadata = {
 
 const contactChannels = [
   {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    description: "Chat with us directly — fastest reply",
+    href: siteConfig.whatsapp,
+    external: true,
+    highlight: true,
+  },
+  {
     icon: Mail,
     title: "Email",
     description: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
-  },
-  {
-    icon: MessageSquare,
-    title: "Discord",
-    description: "Join our server and say hi",
-    href: siteConfig.socials.discord,
+    external: false,
+    highlight: false,
   },
   {
     icon: Clock,
     title: "Response time",
     description: "Within 48 hours, usually faster",
     href: null,
+    external: false,
+    highlight: false,
   },
 ];
 
@@ -53,10 +61,20 @@ export default function ContactPage() {
                 {contactChannels.map((channel) => (
                   <Card
                     key={channel.title}
-                    className="transition-colors duration-300 hover:border-primary/40"
+                    className={cn(
+                      "transition-colors duration-300 hover:border-primary/40",
+                      channel.highlight && "border-success/40 bg-success/5"
+                    )}
                   >
                     <CardContent className="flex items-center gap-4 p-5 pt-5">
-                      <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-violet-300">
+                      <div
+                        className={cn(
+                          "flex size-11 shrink-0 items-center justify-center rounded-xl",
+                          channel.highlight
+                            ? "bg-success/15 text-emerald-400"
+                            : "bg-primary/15 text-violet-300"
+                        )}
+                      >
                         <channel.icon className="size-5" aria-hidden />
                       </div>
                       <div>
@@ -66,7 +84,15 @@ export default function ContactPage() {
                         {channel.href ? (
                           <a
                             href={channel.href}
-                            className="text-sm text-accent hover:underline"
+                            {...(channel.external
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className={cn(
+                              "text-sm hover:underline",
+                              channel.highlight
+                                ? "text-emerald-400"
+                                : "text-accent"
+                            )}
                           >
                             {channel.description}
                           </a>
@@ -79,6 +105,22 @@ export default function ContactPage() {
                     </CardContent>
                   </Card>
                 ))}
+
+                {/* Prominent WhatsApp CTA */}
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-[#25D366] text-black hover:bg-[#25D366]/90"
+                >
+                  <a
+                    href={siteConfig.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle aria-hidden />
+                    Chat on WhatsApp
+                  </a>
+                </Button>
 
                 <div className="rounded-2xl border border-dashed border-border bg-card/50 p-5 text-sm leading-relaxed text-muted-foreground">
                   Prefer a call? Mention your timezone in the message and

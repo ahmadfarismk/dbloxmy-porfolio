@@ -1,6 +1,5 @@
 /**
  * Global site configuration.
- * Replace placeholder copy, links, and socials with real company data.
  */
 
 export interface NavLink {
@@ -12,18 +11,20 @@ export const siteConfig = {
   name: "D'Blox",
   tagline: "Roblox Game Development Studio",
   description:
-    "D'Blox is a full-service Roblox game development studio building high-quality experiences, scalable multiplayer systems, monetization features, and LiveOps for brands and publishers.",
-  url: "https://dblox.example.com", // TODO: real domain
-  email: "hello@dblox.example.com", // TODO: real email
+    "D'Blox is a Malaysian Roblox game development studio building playable experiences, brand virtualizations, educational games, and hands-on workshops.",
+  url: "https://dblox.my",
+  email: "dbloxmy@gmail.com",
+  /** Primary contact channel — opens a WhatsApp chat */
+  whatsapp: "https://wa.link/olkc48",
   cta: {
-    primary: { label: "Book a Discovery Call", href: "/contact" },
+    primary: { label: "Chat With Us", href: "/contact" },
     secondary: { label: "View Our Work", href: "/projects" },
   },
   socials: {
-    discord: "#", // TODO
-    twitter: "#", // TODO
-    youtube: "#", // TODO
-    roblox: "#", // TODO
+    whatsapp: "https://wa.link/olkc48",
+    email: "mailto:dbloxmy@gmail.com",
+    roblox: "https://www.roblox.com/games/140407575953529/FinBlox",
+    // TODO: add Discord / TikTok / Instagram / YouTube when available
   },
 } as const;
 

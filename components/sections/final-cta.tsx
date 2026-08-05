@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CalendarCheck } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -33,9 +33,13 @@ export function FinalCta() {
               <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <MagneticButton>
                   <Button asChild size="lg">
-                    <a href={`mailto:${siteConfig.email}`}>
-                      <CalendarCheck aria-hidden />
-                      Book a Discovery Call
+                    <a
+                      href={siteConfig.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle aria-hidden />
+                      Chat on WhatsApp
                     </a>
                   </Button>
                 </MagneticButton>
