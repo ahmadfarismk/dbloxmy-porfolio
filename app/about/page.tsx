@@ -49,12 +49,16 @@ const values = [
   },
 ];
 
-/** Replace with real numbers when available */
-const stats = [
-  { label: "Founded", value: 2024 },
-  { label: "Projects Delivered", value: 6, suffix: "+" },
+const stats: {
+  label: string;
+  value: number;
+  suffix?: string;
+  plain?: boolean;
+}[] = [
+  { label: "Founded", value: 2024, plain: true },
+  { label: "Games Shipped", value: 3 },
   { label: "Expo Appearances", value: 3 },
-  { label: "Brand Partnerships", value: 2 },
+  { label: "Partners", value: 3 },
 ];
 
 function initials(name: string) {
@@ -87,7 +91,7 @@ export default function AboutPage() {
                   className="rounded-2xl border border-border bg-card p-5 text-center"
                 >
                   <dd className="font-display text-3xl font-bold">
-                    <NumberCounter value={stat.value} suffix={stat.suffix} />
+                    <NumberCounter value={stat.value} suffix={stat.suffix} plain={stat.plain} />
                   </dd>
                   <dt className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
                     {stat.label}
@@ -163,11 +167,8 @@ export default function AboutPage() {
               The team
             </h2>
             <p className="mx-auto mb-12 max-w-md text-center text-sm text-muted-foreground md:text-base">
-              Small crew, shipped titles. Edit{" "}
-              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
-                content/team.ts
-              </code>{" "}
-              to add the real roster.
+              A small crew in Malaysia building, teaching, and shipping Roblox
+              experiences.
             </p>
           </FadeIn>
           <FadeInStagger className="grid grid-cols-2 gap-8 md:grid-cols-4">

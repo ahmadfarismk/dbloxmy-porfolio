@@ -190,16 +190,20 @@ export const milestones: Milestone[] = [
   },
   {
     id: "flyhigh-collab",
-    date: "July 2026",
+    date: "June–July 2026",
     year: "2026",
-    title: "Upcoming Collab with FlyHigh Tuition Academy?!",
+    title: "Fly High Education Centre — Two Games Shipped",
     description:
-      "The next chapter is loading… an education collaboration with FlyHigh Tuition Academy is in the works. Learning, gamified. Watch this space.",
+      "The collab landed. Working with Fly High Education Centre we shipped two Roblox titles back to back: Jejak Wahyu, an eight-chapter journey through the Sirah with UPKK-aligned quizzes, and PKSK Onboard: Misi ke Asrama, turning entrance-exam revision into an explorable world. Both live, both in Bahasa Melayu.",
     images: [
-      { src: null, caption: "Coming soon" },
-      { src: null, caption: "Sneak peek" },
-      { src: null, caption: "In the works" },
+      {
+        src: "/projects/jejak-wahyu-cover.jpg",
+        caption: "Jejak Wahyu — key art",
+      },
+      {
+        src: "/projects/pksk-cover.jpg",
+        caption: "PKSK Onboard — key art",
+      },
     ],
-    upcoming: true,
   },
 ];

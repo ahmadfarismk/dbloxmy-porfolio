@@ -1,6 +1,7 @@
 /**
- * Team members — replace names/roles with the real crew.
- * `avatar` accepts a /public path; while null an initialed avatar renders.
+ * Team members.
+ * Photos live in /public/team/ — square, face-centred, 512px.
+ * Set `avatar` to null and an initialed avatar renders instead.
  */
 
 export interface TeamMember {
@@ -10,9 +11,24 @@ export interface TeamMember {
 }
 
 export const teamMembers: TeamMember[] = [
-  { name: "Danial Iman", role: "Founder, D'Blox Malaysia", avatar: null },
-  // TODO: replace the remaining placeholders with the real crew
-  { name: "Developer Name", role: "Lead Programmer", avatar: null },
-  { name: "Artist Name", role: "3D Artist & World Builder", avatar: null },
-  { name: "Designer Name", role: "UI/UX Designer", avatar: null },
+  {
+    name: "Danial Iman",
+    role: "Founder, D'Blox Malaysia",
+    avatar: "/team/danial.jpg",
+  },
+  {
+    name: "Ahmad Faris",
+    role: "Lead Programmer",
+    avatar: "/team/faris.jpg",
+  },
+  {
+    name: "Syakir Muzaffar",
+    role: "Programmer & UI/UX Designer",
+    avatar: "/team/syakir.jpg",
+  },
+  {
+    name: "Kamarul Ariffin",
+    role: "Administrative Assistant",
+    avatar: "/team/kamarul.jpg",
+  },
 ];

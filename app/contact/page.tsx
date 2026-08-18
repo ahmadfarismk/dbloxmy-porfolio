@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MessageCircle } from "lucide-react";
+import { Clock, Instagram, Mail, MessageCircle } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,14 @@ const contactChannels = [
     description: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
     external: false,
+    highlight: false,
+  },
+  {
+    icon: Instagram,
+    title: "Instagram",
+    description: "@dbloxmy — see what we are building",
+    href: siteConfig.socials.instagram,
+    external: true,
     highlight: false,
   },
   {

@@ -85,6 +85,59 @@ export const projects: Project[] = [
     hrefLabel: "Play on Roblox",
   },
   {
+    slug: "jejak-wahyu",
+    title: "Jejak Wahyu",
+    genre: "Education",
+    description:
+      "An eight-chapter journey through the Sirah of Rasulullah SAW, built with Fly High Education Centre — quizzes aligned to the UPKK syllabus, entirely in Bahasa Melayu.",
+    longDescription:
+      "Players step into Madrasah Wahyu and open portals into eight worlds of Sirah — the old market of Mecca, Rumah Cahaya, the hidden dakwah alleys, the hijrah journey, the oasis of miracles, the battlefields, and finally Warisan Cahaya. Each chapter is its own adventure with interactive puzzles, a chapter quiz mapped to the UPKK syllabus, collectible stars, unlockable cosmetics, and progress saved across all eight chapters. Built entirely in Bahasa Melayu for all ages with no violent content.",
+    images: ["/projects/jejak-wahyu-cover.jpg"],
+    placeholderGradient: "from-amber-600 via-orange-500 to-yellow-400",
+    metrics: [
+      { label: "Visits", value: 312 },
+      { label: "Chapters", value: 8, plain: true },
+      { label: "Launched", value: 2026, plain: true },
+    ],
+    tags: ["Luau", "Sirah", "UPKK Syllabus", "Bahasa Melayu", "Fly High"],
+    facts: [
+      { label: "Partner", value: "Fly High Education Centre" },
+      { label: "Chapters", value: "8 (3 free, 5 VIP)" },
+      { label: "Curriculum", value: "Quizzes aligned to UPKK syllabus" },
+      { label: "Language", value: "100% Bahasa Melayu" },
+      { label: "Features", value: "Global star leaderboard & achievement gallery" },
+      { label: "Launched", value: "June 2026" },
+    ],
+    href: "https://www.roblox.com/games/124356726222612/Jejak-Wahyu",
+    hrefLabel: "Play on Roblox",
+  },
+  {
+    slug: "pksk-onboard",
+    title: "PKSK Onboard: Misi ke Asrama",
+    genre: "Education",
+    description:
+      "Exam prep turned into an open world. Built with Fly High Education Centre to help students prepare for the PKSK special-school entrance exam.",
+    longDescription:
+      "Players explore PKSK World alongside Sang Kancil, touring the Muzium Sekolah Khusus covering SBP, MRSM, SMKA, KV, SMT and more. Three stages of challenges build up to the Bilik Peperiksaan and quiz rooms, where students test what they've learned and collect points to climb the leaderboard. The goal is simple — make revision for a high-stakes entrance exam something students actually want to do.",
+    images: ["/projects/pksk-cover.jpg"],
+    placeholderGradient: "from-sky-500 via-cyan-500 to-emerald-400",
+    metrics: [
+      { label: "Visits", value: 59 },
+      { label: "Stages", value: 3, plain: true },
+      { label: "Launched", value: 2026, plain: true },
+    ],
+    tags: ["Luau", "PKSK Prep", "Leaderboards", "Fly High"],
+    facts: [
+      { label: "Partner", value: "Fly High Education Centre" },
+      { label: "Focus", value: "PKSK entrance-exam preparation" },
+      { label: "Covers", value: "SBP, MRSM, SMKA, KV, SMT & more" },
+      { label: "Structure", value: "Stages 1–3 + exam room & quiz" },
+      { label: "Launched", value: "July 2026" },
+    ],
+    href: "https://www.roblox.com/games/126056624561474/PKSK-Onboard-Misi-ke-Asrama",
+    hrefLabel: "Play on Roblox",
+  },
+  {
     slug: "keluar-sekejap-ep136",
     title: "Keluar Sekejap — EP136",
     genre: "Brand Experience",

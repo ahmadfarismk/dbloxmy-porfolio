@@ -6,6 +6,7 @@ import { navLinks, siteConfig } from "@/content/site";
 
 const socialLinks = [
   { label: "WhatsApp", href: siteConfig.socials.whatsapp, external: true },
+  { label: "Instagram", href: siteConfig.socials.instagram, external: true },
   { label: "Play FinBlox on Roblox", href: siteConfig.socials.roblox, external: true },
 ];
 

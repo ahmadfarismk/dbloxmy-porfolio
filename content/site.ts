@@ -16,15 +16,17 @@ export const siteConfig = {
   email: "dbloxmy@gmail.com",
   /** Primary contact channel — opens a WhatsApp chat */
   whatsapp: "https://wa.link/olkc48",
+  instagram: "https://www.instagram.com/dbloxmy/",
   cta: {
     primary: { label: "Chat With Us", href: "/contact" },
     secondary: { label: "View Our Work", href: "/projects" },
   },
   socials: {
     whatsapp: "https://wa.link/olkc48",
+    instagram: "https://www.instagram.com/dbloxmy/",
     email: "mailto:dbloxmy@gmail.com",
     roblox: "https://www.roblox.com/games/140407575953529/FinBlox",
-    // TODO: add Discord / TikTok / Instagram / YouTube when available
+    // TODO: add Discord / TikTok / YouTube when available
   },
 } as const;
 
