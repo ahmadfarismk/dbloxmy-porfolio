@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/motion/fade-in";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { Spotlight } from "@/components/motion/spotlight";
+import { PixelScatter } from "@/components/motion/pixel-scatter";
 import { siteConfig } from "@/content/site";
 
 export function Hero() {
@@ -20,6 +21,7 @@ export function Hero() {
         size={640}
         opacity={0.14}
       />
+      <PixelScatter />
 
       <div className="container-site relative">
         <div className="mx-auto max-w-3xl text-center">

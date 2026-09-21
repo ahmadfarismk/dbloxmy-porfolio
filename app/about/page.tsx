@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   Gem,
@@ -13,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeIn, FadeInStagger, FadeInItem } from "@/components/motion/fade-in";
 import { NumberCounter } from "@/components/motion/number-counter";
+import { TextFill } from "@/components/motion/text-fill";
+import { PixelReveal } from "@/components/motion/pixel-reveal";
 import { PageHero } from "@/components/sections/page-hero";
 import { teamMembers } from "@/content/team";
 
@@ -111,11 +112,10 @@ export default function AboutPage() {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                 Our mission
               </p>
-              <p className="font-display text-2xl font-medium leading-snug sm:text-3xl">
-                Prove that a studio from Malaysia can build{" "}
-                <span className="text-gradient">world-class Roblox games</span>{" "}
-                — and take partners along for the ride.
-              </p>
+              <TextFill
+                className="font-display text-3xl font-semibold leading-snug tracking-tight sm:text-4xl md:text-5xl"
+                text="Prove that a studio from Malaysia can build **world-class Roblox games** — and take partners along for the ride."
+              />
               <div className="mt-8">
                 <Button asChild variant="outline">
                   <Link href="/story">
@@ -176,13 +176,15 @@ export default function AboutPage() {
               <FadeInItem key={member.name + member.role}>
                 <div className="flex flex-col items-center text-center">
                   {member.avatar ? (
-                    <Image
-                      src={member.avatar}
-                      alt={member.name}
-                      width={112}
-                      height={112}
-                      className="mb-4 size-28 rounded-full object-cover"
-                    />
+                    <div className="relative mb-4 size-28 overflow-hidden rounded-full ring-1 ring-border">
+                      <PixelReveal
+                        src={member.avatar}
+                        alt={member.name}
+                        sizes="112px"
+                        mode="blocks"
+                        blockSize={14}
+                      />
+                    </div>
                   ) : (
                     <span
                       aria-hidden

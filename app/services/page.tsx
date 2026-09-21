@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { MagneticButton } from "@/components/motion/magnetic-button";
+import { PixelReveal } from "@/components/motion/pixel-reveal";
 import { PageHero } from "@/components/sections/page-hero";
 import { services } from "@/content/services";
 import { siteConfig } from "@/content/site";
@@ -75,12 +75,11 @@ export default function ServicesPage() {
                     <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
                       {service.image ? (
                         <>
-                          <Image
+                          <PixelReveal
                             src={service.image}
                             alt={service.title}
-                            fill
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover"
+                            mode="pixelate"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
                         </>

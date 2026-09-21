@@ -184,3 +184,30 @@ body {
     transparent
   );
 }
+
+/* ---------------------------------- */
+/* Hero pixel scatter                 */
+/* ---------------------------------- */
+
+@keyframes pixel-float {
+  from {
+    transform: translateY(0) rotate(15deg);
+  }
+  to {
+    transform: translateY(-16px) rotate(15deg);
+  }
+}
+
+.pixel-float {
+  transform: rotate(15deg);
+  animation-name: pixel-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-float {
+    animation: none;
+  }
+}

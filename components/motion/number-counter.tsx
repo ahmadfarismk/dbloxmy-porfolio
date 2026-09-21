@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import {
   useInView,
   useMotionValue,
-  useReducedMotion,
   useSpring,
 } from "framer-motion";
+
+import { useHydratedReducedMotion } from "@/components/motion/use-hydrated-reduced-motion";
 
 interface NumberCounterProps {
   value: number;
@@ -26,7 +27,7 @@ export function NumberCounter({
 }: NumberCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useHydratedReducedMotion();
 
   const motionValue = useMotionValue(0);
   const spring = useSpring(motionValue, { damping: 28, stiffness: 80 });

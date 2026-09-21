@@ -12,6 +12,7 @@ import {
   type GalleryItem,
 } from "@/content/gallery";
 import { cn } from "@/lib/utils";
+import { PixelReveal } from "@/components/motion/pixel-reveal";
 
 type Filter = "All" | GalleryCategory;
 
@@ -203,12 +204,12 @@ export function GalleryGrid() {
                 className="group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border disabled:cursor-default"
               >
                 {item.src ? (
-                  <Image
+                  <PixelReveal
                     src={item.src}
                     alt={item.title}
-                    fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    mode="blocks"
+                    imgClassName="transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
                   <div
