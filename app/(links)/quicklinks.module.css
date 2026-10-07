@@ -1,0 +1,334 @@
+/*
+ * /quicklinks — Instagram link-in-bio page.
+ * CSS module: every class is hashed, so nothing here can reach the main site
+ * and the site's global CSS is never loaded on this page.
+ */
+
+.body {
+  --bg: #020617;
+  --surface: #0f172a;
+  --surface-2: #111a2e;
+  --border: rgba(148, 163, 184, 0.16);
+  --text: #f8fafc;
+  --muted: #a3b1c6;
+  --pksk: #34d399; /* green accent */
+  --pksk-ink: #022c22;
+  --jejak: #f5b83d; /* gold accent */
+  --jejak-ink: #2a1a02;
+  --brand: #7c3aed;
+  --brand-2: #22d3ee;
+
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(124, 58, 237, 0.28), transparent 60%),
+    radial-gradient(80% 40% at 100% 100%, rgba(34, 211, 238, 0.1), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
+}
+
+.page,
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 36px 16px 40px;
+}
+
+/* ---------------- header ---------------- */
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  display: block;
+  width: 46px;
+  height: auto;
+  margin: 0 auto 14px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-bricolage), var(--font-jakarta), system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------------- sections ---------------- */
+
+.section + .section {
+  margin-top: 30px;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-family: var(--font-bricolage), var(--font-jakarta), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sectionLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+/* ---------------- game cards ---------------- */
+
+.card {
+  --accent: var(--text);
+  --accent-ink: var(--bg);
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 55%
+    ),
+    var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--border));
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.card:active {
+  transform: scale(0.985);
+}
+
+.card:focus-visible,
+.webCard:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.pksk {
+  --accent: var(--pksk);
+  --accent-ink: var(--pksk-ink);
+}
+
+.jejak {
+  --accent: var(--jejak);
+  --accent-ink: var(--jejak-ink);
+}
+
+.thumb {
+  display: block;
+  width: 84px;
+  height: 118px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.cardBody {
+  min-width: 0;
+}
+
+.gameName {
+  display: block;
+  margin: 0;
+  font-family: var(--font-bricolage), var(--font-jakarta), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.gameDesc {
+  display: block;
+  margin: 4px 0 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cta svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+}
+
+/* ---------------- collaboration box ---------------- */
+
+.collab {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+  background: rgba(15, 23, 42, 0.6);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.collab strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.collabIcon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--pksk), var(--jejak));
+  color: var(--bg);
+}
+
+.collabIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------------- website card ---------------- */
+
+.webCard {
+  --accent: var(--brand-2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(124, 58, 237, 0.45);
+  background:
+    linear-gradient(100deg, rgba(124, 58, 237, 0.22), rgba(34, 211, 238, 0.06) 70%),
+    var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.webCard:hover {
+  box-shadow: 0 10px 30px -12px rgba(124, 58, 237, 0.6);
+}
+
+.webCard:active {
+  transform: scale(0.985);
+}
+
+.webIcon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid var(--border);
+}
+
+.webIcon img {
+  width: 26px;
+  height: auto;
+}
+
+.webText {
+  flex: 1;
+  min-width: 0;
+}
+
+.webTitle {
+  display: block;
+  margin: 0;
+  font-family: var(--font-bricolage), var(--font-jakarta), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.webUrl {
+  display: block;
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: var(--brand-2);
+}
+
+.arrow {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .webCard {
+    transition: none;
+  }
+  .card:active,
+  .webCard:active {
+    transform: none;
+  }
+}
