@@ -15,6 +15,9 @@
   --pksk-ink: #022c22;
   --jejak: #f5b83d; /* gold accent */
   --jejak-ink: #2a1a02;
+  --gepuk: #f8513a; /* chili red accent */
+  --gepuk-ink: #2b0703;
+  --discord: #5865f2;
   --brand: #7c3aed;
   --brand-2: #22d3ee;
 
@@ -103,6 +106,18 @@
   background: var(--border);
 }
 
+/* "Permainan D'Blox" / "Bersama FlyHigh" inside Main di Roblox */
+.subLabel {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stack + .subLabel {
+  margin-top: 20px;
+}
+
 .stack {
   display: grid;
   gap: 12px;
@@ -159,6 +174,11 @@
 .jejak {
   --accent: var(--jejak);
   --accent-ink: var(--jejak-ink);
+}
+
+.gepuk {
+  --accent: var(--gepuk);
+  --accent-ink: var(--gepuk-ink);
 }
 
 .thumb {
@@ -291,6 +311,37 @@
 .webIcon img {
   width: 26px;
   height: auto;
+}
+
+.webCard + .webCard {
+  margin-top: 12px;
+}
+
+.discord {
+  --accent: var(--discord);
+  border-color: color-mix(in srgb, var(--discord) 55%, transparent);
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--discord) 24%, transparent), transparent 70%),
+    var(--surface);
+}
+
+.discord:hover {
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--discord) 70%, transparent);
+}
+
+.discord .webIcon {
+  background: var(--discord);
+  border-color: transparent;
+  color: #fff;
+}
+
+.discord .webIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.discord .webUrl {
+  color: #a5adff;
 }
 
 .webText {
